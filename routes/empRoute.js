@@ -49,6 +49,7 @@ exports.deleteEmployee = function(req, res) {
 
 exports.updateEmployee = function(req, res) {
     console.log("UPDATING employee : " + req.body._id);
+    req.body.age = (new Date()).getFullYear() - (new Date(req.body.dob)).getFullYear();
     Employee.findOneAndUpdate({ _id: req.body._id }, req.body, function(err) {
         if (err) {
             console.log("Error : UPDATING Employee: " + err);
